@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cast from '../Cast'
+
 import {
   MainMovieContainer,
   MovieDetailsContainer,

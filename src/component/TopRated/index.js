@@ -2,10 +2,13 @@ import {Component} from 'react'
 
 import {MainContainer, UnorderList} from './styledComponent'
 import MovieDetails from '../MovieDetails'
+import Pagination from '../Pagination'
 
 class TopRated extends Component {
   state = {
     topRatedData: [],
+    page: 1,
+    totaPages: 1,
   }
 
   componentDidMount() {
@@ -13,8 +16,11 @@ class TopRated extends Component {
   }
 
   getTopRatedMovieData = async () => {
+    const {page} = this.state
     const apiKey = '1303763ee89de2e76b22abaf890433e9'
-    const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
+
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page}`
+
     const options = {
       method: 'GET',
     }
@@ -29,12 +35,19 @@ class TopRated extends Component {
       id: each.id,
     }))
 
-    this.setState({topRatedData: convertedData})
+    this.setState({
+      topRatedData: convertedData,
+      totaPages: data.total_pages || 1,
+    })
+  }
+
+  onPageChange = page => {
+    this.setState({page}, this.getTopRatedMovieData)
   }
 
   render() {
-    const {topRatedData} = this.state
-
+    const {topRatedData, page, totaPages} = this.state
+    console.log(topRatedData)
     return (
       <MainContainer>
         <UnorderList>
@@ -42,6 +55,11 @@ class TopRated extends Component {
             <MovieDetails details={each} key={each.id} />
           ))}
         </UnorderList>
+        <Pagination
+          currentPage={page}
+          totalPages={totaPages}
+          onPageChange={this.onPageChange}
+        />
       </MainContainer>
     )
   }
