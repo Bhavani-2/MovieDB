@@ -9,6 +9,7 @@ export const PaginationContainer = styled.div`
   gap: 0.75rem;
   margin: 2rem 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin-bottom: 0px;
 `
 export const NavButton = styled.button`
   background-color: #ffffff;

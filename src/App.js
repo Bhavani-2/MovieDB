@@ -9,6 +9,8 @@ import Header from './component/Header'
 import SearchMovie from './component/SearchMovie'
 import SearchContext from './context/SearchContext'
 
+import './App.css'
+
 class App extends Component {
   state = {
     searchInput: '',

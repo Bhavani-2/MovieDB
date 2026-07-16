@@ -1,10 +1,10 @@
 import {Component} from 'react'
 
+import {Redirect} from 'react-router-dom'
 import {MainContainer, UnorderList} from './styledComponent'
 
 import MovieDetails from '../MovieDetails'
 import SearchContext from '../../context/SearchContext'
-import {Redirect} from 'react-router-dom'
 
 class SearchMovie extends Component {
   render() {
